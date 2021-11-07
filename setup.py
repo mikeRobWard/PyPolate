@@ -1,4 +1,4 @@
-from setuptools import setup, find_packages
+from setuptools import setup
 import pathlib
 
 HERE = pathlib.Path(__file__).parent
@@ -15,7 +15,7 @@ classifiers = [
 
 setup(
     name ='pypolate',
-    version = '0.0.1',
+    version = '0.0.5',
     description = 'A package for performing spatial interpolation with vector data',
     long_description=README,
     long_description_content_type = "text/markdown",
@@ -25,7 +25,7 @@ setup(
     license='GPLv3+',
     classifiers=classifiers,
     keywords='spatial interpolation',
-    packages=find_packages(exclude=("tests",)),
+    packages=['pypolate',],
     install_requires=['geopandas', 'pandas'],
     python_requires=">=3.7"
 )

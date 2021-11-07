@@ -40,7 +40,7 @@ For this example, we will be using open data from Philadelphia. The first shapef
 
 In this example, we want to interpolate the number of crashes from TAZ in the source layer, to Census Block group in our target layer. We can see from the crash-data attributes that the field for aggregated crashes is named `Count_` 
 
-    pypolate.arealwt(carcrash.df, census.df, Count_, '_intp')
+    pypolate.areal(carcrash.df, census.df, Count_, '_intp')
 
 If you map the output DataFrame and compare it to the input DataFrame, this is what it should look like:
 

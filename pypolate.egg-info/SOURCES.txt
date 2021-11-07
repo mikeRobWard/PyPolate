@@ -10,7 +10,12 @@ doc/_build/html/_sources/index.rst.txt
 doc/_build/html/_sources/install.rst.txt
 doc/_build/html/_sources/pypolate.rst.txt
 pypolate/__init__.py
-pypolate/pypolate.py
+pypolate/areal.py
+pypolate/binary.py
+pypolate/expert.py
+pypolate/lim_var.py
+pypolate/n_class.py
+pypolate/parcel.py
 pypolate.egg-info/PKG-INFO
 pypolate.egg-info/SOURCES.txt
 pypolate.egg-info/dependency_links.txt
