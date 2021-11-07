@@ -12,7 +12,7 @@ setup(
     name ='pypolate',
     version = '0.0.1',
     description = 'A package for performing spatial interpolation with vector data',
-    long_description=open('README.txt').read() + '\n\n' + open('CHANGELOG.txt').read(),
+    long_description=open('README.md').read() + '\n\n' + open('CHANGELOG.txt').read(),
     long_description_content_type = "text/markdown/html",
     url = 'https://github.com/mikeRobWard/PyPolate',
     author = 'Michael Ward & John Fitzgibbons',
