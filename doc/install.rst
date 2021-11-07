@@ -7,5 +7,5 @@ Install from PyPI
 
 Then import using:
 
-    import pypolate.pypolate as pyp
+>>> import pypolate.pypolate as pyp
 

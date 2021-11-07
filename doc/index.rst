@@ -15,7 +15,7 @@ PyPolate is an open source project to make interpolating geospatial data in pyth
 
 .. toctree::
    :maxdepth: 100
-   :caption: Documentation
+   :caption: Reference Guide
    
    pypolate
 

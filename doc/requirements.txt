@@ -1,3 +1,2 @@
-geopandas
-pandas
-pypolate
+# docs/requirements.txt
+pypolate==0.0.5
