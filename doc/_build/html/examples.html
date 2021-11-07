@@ -1,0 +1,316 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Example Usage &mdash; PyPolate 0.0.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="PyPolate Package" href="pypolate.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> PyPolate
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Installation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="install.html">How to install PyPolate</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="pypolate.html">PyPolate Package</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Examples</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Example Usage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#interpolating-car-crash-data-with-areal-weighting">Interpolating car crash data with areal weighting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#masking-land-use-categories-with-the-binary-method">Masking land-use categories with the binary method</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#setting-land-use-category-thresholds-with-the-limiting-variable-method">Setting land-use category thresholds with the limiting variable method</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#assigning-weights-to-land-use-categories-with-the-n-class-method">Assigning weights to land-use categories with the n-class method</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#disaggregating-population-with-the-parcel-method">Disaggregating population with the parcel method</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#refining-parcel-method-with-the-cadastral-based-expert-dasymetric-system">Refining parcel method with the Cadastral-Based Expert Dasymetric System</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">PyPolate</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Example Usage</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/examples.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="example-usage">
+<h1>Example Usage<a class="headerlink" href="#example-usage" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="interpolating-car-crash-data-with-areal-weighting">
+<h2>Interpolating car crash data with areal weighting<a class="headerlink" href="#interpolating-car-crash-data-with-areal-weighting" title="Permalink to this headline">¶</a></h2>
+<p>For this example, we will be using loading shapefiles from Philadelphia as GeoDataFrames.
+The first shapefile is <a class="reference external" href="https://github.com/CityOfPhiladelphia/crash-data">crash data aggregated by Traffic Analysis zone (TAZ)</a>.
+The second shapefile is <a class="reference external" href="https://www.opendataphilly.org/dataset/census-block-groups">Census Block Groups</a>.</p>
+<a class="reference internal image-reference" href="_images/aw_test.png"><img alt="areal weighting data" src="_images/aw_test.png" style="width: 100%;" /></a>
+<p>In this example, we want to interpolate the number of crashes from TAZ in the source layer, to Census Block group in our target layer.
+We can see from the crash-data attributes that the field for aggregated crashes is named <code class="docutils literal notranslate"><span class="pre">Count_</span></code>. Calling the areal weighting method looks like this:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pypolate</span><span class="o">.</span><span class="n">arealwt</span><span class="p">(</span><span class="n">carcrash</span><span class="o">.</span><span class="n">df</span><span class="p">,</span> <span class="n">census</span><span class="o">.</span><span class="n">df</span><span class="p">,</span> <span class="n">Count_</span><span class="p">,</span> <span class="s1">&#39;_intp&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>If you map the output DataFrame and compare it to the input DataFrame, this is what it should look like:</p>
+<a class="reference internal image-reference" href="_images/aw_output.png"><img alt="areal weighting output" src="_images/aw_output.png" style="width: 100%;" /></a>
+</div>
+<div class="section" id="masking-land-use-categories-with-the-binary-method">
+<h2>Masking land-use categories with the binary method<a class="headerlink" href="#masking-land-use-categories-with-the-binary-method" title="Permalink to this headline">¶</a></h2>
+<p>In this example, we will use the <a class="reference external" href="https://github.com/CityOfPhiladelphia/crash-data">Philadelphia crash data</a> again, but
+this time we will use <a class="reference external" href="https://www.opendataphilly.org/dataset/land-use">land-use data</a> as an ancillary data source. Let’s take a look at our data:</p>
+<a class="reference internal image-reference" href="_images/bm_test.png"><img alt="binary method data" src="_images/bm_test.png" style="width: 100%;" /></a>
+<p>This method will use the land use shapefile to mask out certain land use types from the crash data shapefile.
+Car crashes definitely shouldn’t happen on water, and there may be other land use types you’d want to mask out.
+For this example, let’s assume that we want to interpolate the car crash data to just residential land use.
+Here’s what our inputs should look like:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pypolate</span><span class="o">.</span><span class="n">binary</span><span class="p">(</span><span class="n">carcrash</span><span class="o">.</span><span class="n">df</span><span class="p">,</span> <span class="n">landuse</span><span class="o">.</span><span class="n">df</span><span class="p">,</span> <span class="s1">&#39;C_DIG1&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">],</span>  <span class="s1">&#39;_intp&#39;</span><span class="p">,</span> <span class="p">[</span><span class="n">Count_</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>Lets make the output DataFrame to see what our results look like:</p>
+<a class="reference internal image-reference" href="_images/bm_output.png"><img alt="binary method data" src="_images/bm_output.png" style="width: 100%;" /></a>
+</div>
+<div class="section" id="setting-land-use-category-thresholds-with-the-limiting-variable-method">
+<h2>Setting land-use category thresholds with the limiting variable method<a class="headerlink" href="#setting-land-use-category-thresholds-with-the-limiting-variable-method" title="Permalink to this headline">¶</a></h2>
+<p>For this example, we can continue to use the <a class="reference external" href="https://github.com/CityOfPhiladelphia/crash-data">Philadelphia crash data</a>
+and <a class="reference external" href="https://www.opendataphilly.org/dataset/land-use">land-use data</a>. Our starting data will look like this:</p>
+<a class="reference internal image-reference" href="_images/bm_test.png"><img alt="lim_var inputs" src="_images/bm_test.png" style="width: 100%;" /></a>
+<p>Calling the limiting variable method will look like this:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pypolate</span><span class="o">.</span><span class="n">lim_var</span><span class="p">(</span><span class="n">carcrash</span><span class="o">.</span><span class="n">df</span><span class="p">,</span> <span class="n">landuse</span><span class="o">.</span><span class="n">df</span><span class="p">,</span> <span class="s1">&#39;C_DIG1&#39;</span><span class="p">,</span> <span class="p">{</span><span class="mi">1</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">3</span><span class="p">:</span> <span class="mi">50</span><span class="p">},</span> <span class="p">[</span><span class="n">Count_</span><span class="p">],</span> <span class="s1">&#39;TAZ&#39;</span><span class="p">,</span> <span class="s1">&#39;_intp&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Mapping the output of this should look something like this:</p>
+<a class="reference internal image-reference" href="_images/lv_output.png"><img alt="lim_var outputs" src="_images/lv_output.png" style="width: 100%;" /></a>
+</div>
+<div class="section" id="assigning-weights-to-land-use-categories-with-the-n-class-method">
+<h2>Assigning weights to land-use categories with the n-class method<a class="headerlink" href="#assigning-weights-to-land-use-categories-with-the-n-class-method" title="Permalink to this headline">¶</a></h2>
+<p>For testing the n-class method, we can continue using the <a class="reference external" href="https://github.com/CityOfPhiladelphia/crash-data">Philadelphia crash data</a> and
+<a class="reference external" href="https://www.opendataphilly.org/dataset/land-use">land-use data</a>. Our starting data will look like this again:</p>
+<a class="reference internal image-reference" href="_images/bm_test.png"><img alt="n_class inputs" src="_images/bm_test.png" style="width: 100%;" /></a>
+<p>The inputs for n-class method are very similar to the limiting variable method,
+but instead of passing in a dictionary of thresholds based on square units, we pass in percentages as a decimal for our thresholds.
+The percentages should add up to 100%, regardless of how many classes you are splitting between.
+For this example, we’ll assign 75% to residential, 20% to commercial, and 5% to industrial:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pypolate</span><span class="o">.</span><span class="n">n_class</span><span class="p">(</span><span class="n">carcrash</span><span class="o">.</span><span class="n">df</span><span class="p">,</span> <span class="n">landuse</span><span class="o">.</span><span class="n">df</span><span class="p">,</span> <span class="s1">&#39;C_DIG1&#39;</span><span class="p">,</span> <span class="p">{</span><span class="mi">1</span><span class="p">:</span> <span class="mf">0.75</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="mf">0.20</span><span class="p">,</span> <span class="mi">3</span><span class="p">:</span> <span class="mf">0.05</span><span class="p">},</span> <span class="p">[</span><span class="n">Count_</span><span class="p">],</span> <span class="s1">&#39;TAZ&#39;</span><span class="p">,</span> <span class="s1">&#39;_intp&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The output of the n-class method using this data should look like this when mapped:</p>
+<a class="reference internal image-reference" href="_images/nc_output.png"><img alt="n_class outputs" src="_images/nc_output.png" style="width: 100%;" /></a>
+</div>
+<div class="section" id="disaggregating-population-with-the-parcel-method">
+<h2>Disaggregating population with the parcel method<a class="headerlink" href="#disaggregating-population-with-the-parcel-method" title="Permalink to this headline">¶</a></h2>
+<p>For the parcel method, we will use <a class="reference external" href="https://www1.nyc.gov/site/planning/data-maps/open-data/dwn-pluto-mappluto.page">tax lot data from NYC’s MapPLUTO</a>,
+and <a class="reference external" href="https://www.census.gov/cgi-bin/geo/shapefiles">population at the census block group level from TIGER/Line</a>. Our data will look like this to begin:</p>
+<a class="reference internal image-reference" href="_images/pm_input.png"><img alt="pm_input" src="_images/pm_input.png" style="width: 100%;" /></a>
+<p>The data that we will be interpolating is population, which is currently aggregated in census block groups.
+Using the parcel method, the population can be disaggregated into individual parcels. Our inputs should look like this:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pypolate</span><span class="o">.</span><span class="n">parcel</span><span class="p">(</span><span class="n">block_group</span><span class="o">.</span><span class="n">df</span><span class="p">,</span> <span class="n">parcels</span><span class="o">.</span><span class="n">df</span><span class="p">,</span> <span class="s1">&#39;UnitsTotal&#39;</span><span class="p">,</span> <span class="s1">&#39;UnitsRes&#39;</span><span class="p">,</span> <span class="s1">&#39;BldgArea&#39;</span><span class="p">,</span> <span class="s1">&#39;ResArea&#39;</span><span class="p">,</span> <span class="p">[</span><span class="n">population</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>The parcel method will interpolate population into two new columns which are calculated from different inputs.
+One of the new columns is named <code class="docutils literal notranslate"><span class="pre">ara_derived</span></code> (derived from adjusted residential area), and the other column is named <code class="docutils literal notranslate"><span class="pre">ru_derived</span></code>
+(derived from number of residential units). Below are the results of the parcel method, one map for each interpolation type:</p>
+<a class="reference internal image-reference" href="_images/pm_ara_output.png"><img alt="ara_derived ouput" src="_images/pm_ara_output.png" style="width: 100%;" /></a>
+<a class="reference internal image-reference" href="_images/pm_ru_output.png"><img alt="ru_derived ouput" src="_images/pm_ru_output.png" style="width: 100%;" /></a>
+</div>
+<div class="section" id="refining-parcel-method-with-the-cadastral-based-expert-dasymetric-system">
+<h2>Refining parcel method with the Cadastral-Based Expert Dasymetric System<a class="headerlink" href="#refining-parcel-method-with-the-cadastral-based-expert-dasymetric-system" title="Permalink to this headline">¶</a></h2>
+<p>Like the parcel method, we’ll be using <a class="reference external" href="https://www.census.gov/cgi-bin/geo/shapefiles">census block groups</a> containing population, and <a class="reference external" href="https://www1.nyc.gov/site/planning/data-maps/open-data/dwn-pluto-mappluto.page">parcel data</a>.
+In addition, we are also using a larger census zone DataFrame (which also contains population) that the smaller census zone nests inside, in this case <a class="reference external" href="https://www.census.gov/cgi-bin/geo/shapefiles">census tracts</a>.</p>
+<p><em>The CEDS method works perfectly with census data, but theoretically will work with any two geographies that nest without intersecting.</em></p>
+<p>Our input data will look like this if plotted:</p>
+<a class="reference internal image-reference" href="_images/es_input.png"><img alt="es_input" src="_images/es_input.png" style="width: 100%;" /></a>
+<a class="reference internal image-reference" href="_images/parcels.jpg"><img alt="es_input2" src="_images/parcels.jpg" style="width: 100%;" /></a>
+<p>For our inputs, the columns that we are interpolating (population) needs to have the same column name in both source DataFrames (tracts and block groups).
+Other than that condition, the inputs for CEDS are very similar to the parcel method.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pypolate</span><span class="o">.</span><span class="n">expert</span><span class="p">(</span><span class="n">tracts</span><span class="o">.</span><span class="n">df</span><span class="p">,</span> <span class="n">block_group</span><span class="o">.</span><span class="n">df</span><span class="p">,</span> <span class="n">parcels</span><span class="o">.</span><span class="n">df</span><span class="p">,</span> <span class="s1">&#39;UnitsTotal&#39;</span><span class="p">,</span> <span class="s1">&#39;UnitsRes&#39;</span><span class="p">,</span> <span class="s1">&#39;BldgArea&#39;</span><span class="p">,</span> <span class="s1">&#39;ResArea&#39;</span><span class="p">,</span> <span class="p">[</span><span class="n">population</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>The mapped output of these inputs should look similar to this (the column expert_sys is mapped here):</p>
+<a class="reference internal image-reference" href="_images/es_output.png"><img alt="pm_output" src="_images/es_output.png" style="width: 100%;" /></a>
+<p>The dataframe that results from the CEDS method contains both the <code class="docutils literal notranslate"><span class="pre">ru_derived</span></code> and <code class="docutils literal notranslate"><span class="pre">ara_derived</span></code> interpolations for population,
+as well as a new field named expert_sys. As seen in the dataframe below, CEDS determines whether to use <code class="docutils literal notranslate"><span class="pre">ru_derived</span></code> or <code class="docutils literal notranslate"><span class="pre">ara_derived</span></code> to measure population,
+on a census block group basis. In Block Group 3 of <code class="docutils literal notranslate"><span class="pre">GEOID</span></code> 360610271003 CEDS chooses the <code class="docutils literal notranslate"><span class="pre">ru_derived</span></code> population,
+then chooses the <code class="docutils literal notranslate"><span class="pre">ara_derived</span> <span class="pre">population</span></code> for block group 1 of <code class="docutils literal notranslate"><span class="pre">GEOID</span></code> 360610277001.</p>
+<a class="reference internal image-reference" href="_images/es_pandas.jpg"><img alt="es_pandas" src="_images/es_pandas.jpg" style="width: 100%;" /></a>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="pypolate.html" class="btn btn-neutral float-left" title="PyPolate Package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Michael Ward &amp; John Fitzgibbons.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

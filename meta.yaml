@@ -1,0 +1,28 @@
+package:
+  name: "pypolate"
+  version: "0.0.1"
+
+source:
+  git_url: https://github.com/mikeRobWard/PyPolate
+
+requirements:
+  host:
+    - python
+    - setuptools
+  build:
+    - python
+  run:
+    - python
+    - geopandas
+
+
+about:
+  home: https://github.com/mikeRobWard/PyPolate
+  license: GPLv3+
+  license_familY: GPL
+  license_file: LICENSE
+  summary: "PyPolate is an open source project to make interpolating geospatial data in python easier. "
+
+extra:
+  recipe-maintainers:
+    - mikeRobWard

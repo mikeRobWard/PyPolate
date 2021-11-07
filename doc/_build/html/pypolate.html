@@ -1,0 +1,409 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>PyPolate Package &mdash; PyPolate 0.0.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Example Usage" href="examples.html" />
+    <link rel="prev" title="How to install PyPolate" href="install.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> PyPolate
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Installation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="install.html">How to install PyPolate</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Documentation</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">PyPolate Package</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Example Usage</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">PyPolate</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>PyPolate Package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/pypolate.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-pypolate">
+<span id="pypolate-package"></span><h1>PyPolate Package<a class="headerlink" href="#module-pypolate" title="Permalink to this headline">¶</a></h1>
+<dl class="py function">
+<dt id="pypolate.areal">
+<code class="sig-prename descclassname"><span class="pre">pypolate.</span></code><code class="sig-name descname"><span class="pre">areal</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cols</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[None]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">suffix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pypolate.areal" title="Permalink to this definition">¶</a></dt>
+<dd><p>The areal weighting method interpolates data into target polygons by using the ratio of
+intersected area to source area. It accepts two DataFrames – a source and target, a list of columns to be interpolated,
+and an optional suffix for the new name of the interpolated column in the target DataFrame. In the function,
+the source polygons are reindexed for summing later, and the areas of the source polygons are calculated.
+The source and target are intersected, and the area of the intersected polygons is calculated.
+Each intersected area is divided by the source area that encapsulates it for its areal weight.
+The function then iterates through the selected columns and multiplies each value by the areal weight.
+The target DataFrame is returned with the interpolated columns.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>source</strong> (<em>DataFrame</em>) – DataFrame with values for interpolation.</p></li>
+<li><p><strong>target</strong> (<em>DataFrame</em>) – DataFrame with polygons obtaining interpolated values.</p></li>
+<li><p><strong>cols</strong> (<em>list</em>) – Column(s) from source to be interpolated.</p></li>
+<li><p><strong>suffix</strong> (<em>str</em><em>, </em><em>optional</em>) – New name for interpolated columns. The default is ‘’</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Target DataFrame with interpolated columns added</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="pypolate.binary">
+<code class="sig-prename descclassname"><span class="pre">pypolate.</span></code><code class="sig-name descname"><span class="pre">binary</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ancillary</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exclude_col</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exclude_val</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[None]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">suffix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cols</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[None]</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pypolate.binary" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method accepts two DataFrames - a source DataFrame which should contain the values that will be interpolated - and
+an ancillary DataFrame containing a column with categorical geographic data such as land use types. The function
+also takes an input called exclusion field which allows the user to pass in the name of the column that contains the categorical data.
+Another input, exclusion value(s), allows the user to pass in a list of values that appear within the exclusion field column.
+The values that are passed to exclusion field will be dropped from the ancillary DataFrame before it is spatially
+intersected with the source DataFrame so that the geography of the exclusionary values is not included in the intersected DataFrame.
+This effectively turns the ancillary DataFrame into a mask, which masks out the geography of all values that were passed to exclusion value.
+Returns a DataFrame that has the masked areas clipped and the interpolation values disaggregated based on areal weight to the non-clipped zones.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>source</strong> (<em>str</em>) – Name of Dataframe that contains values that should be interpolated</p></li>
+<li><p><strong>ancillary</strong> (<em>str</em>) – Name of dataframe containing ancillary geometry data, used to mask source dataframe</p></li>
+<li><p><strong>exclude_col</strong> (<em>str</em>) – Column name from ancillary dataframe that contains exclusionary values</p></li>
+<li><p><strong>exclude_val</strong> (<em>list</em>) – Values from exclude_col that should be removed during binary mask operation</p></li>
+<li><p><strong>suffix</strong> (<em>str</em><em>, </em><em>optional</em>) – Suffix that should be added to the column names that are interpolated</p></li>
+<li><p><strong>cols</strong> (<em>list</em>) – Column names that should be interpolated</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Source dataframe with interpolated columns added</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dataframe</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="pypolate.expert">
+<code class="sig-prename descclassname"><span class="pre">pypolate.</span></code><code class="sig-name descname"><span class="pre">expert</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">large_zone</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">small_zone</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parcel</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tu_col</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ru_col</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ba_col</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ra_col</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">intp_col</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pypolate.expert" title="Permalink to this definition">¶</a></dt>
+<dd><p>The CEDS method works in conjunction with the parcel based method to determine whether adjusted residential area or number of residential
+units are a more accurate determinant when disaggregating population. The CEDS method accepts three DataFrames, two zone DataFrames that must
+nest with each other and contain geometry and population, and a parcel DataFrame that contains geometry, total units per parcel, residential units per parcel,
+building area per parcel, and residential area per parcel. The parcel based method is called twice inside the CEDS method, once using the larger zone DataFrame as an
+input, and once using the smaller nested zone DataFrame as an input to the parcel method. The populations at the tax lot level that were derived from the large zone
+are then reaggregated back up to the small zone level. The absolute value of the difference between the large zone based populations and small zone estimated population
+are then calculated. Finally, for each parcel, if the absolute difference between the large zone based population and the small zone estimated population based
+on residential units is less than or equal to the absolute difference between the large zone population and small zone estimated population based on adjusted residential area,
+then the population estimate from the small zone based on residential units is determined to be the more accurate disaggregation. Otherwise, the
+population estimate from the small zone based on adjusted residential area is determined by the CEDS method to be the more accurate measure of disaggregation.
+This method returns one DataFrame at the tax lot level with the parcel based method calculations, plus an additional column that contains the selected outcome of the CEDS method.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>large_zone</strong> (<em>Dataframe</em>) – DataFrame with larger geography</p></li>
+<li><p><strong>small_zone</strong> (<em>Dataframe</em>) – DataFrame with smaller geography</p></li>
+<li><p><strong>parcel</strong> (<em>DataFrame</em>) – Parcel DataFrame</p></li>
+<li><p><strong>tu_col</strong> (<em>str</em>) – Column name from parcel DataFrame containing total number of units</p></li>
+<li><p><strong>ru_col</strong> (<em>str</em>) – Column name from parcel DataFrame containing number of residential units</p></li>
+<li><p><strong>ba_col</strong> (<em>str</em>) – Column name from parcel DataFrame containing building area</p></li>
+<li><p><strong>ra_col</strong> (<em>string</em>) – Column name from parcel DataFrame containing residential area</p></li>
+<li><p><strong>intp_col</strong> (<em>str</em>) – Column name from Zone DataFrame containing values to interpolate. Only accepts one column</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Dataframe at parcel level containing interpolated values based on expert system implementation</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="pypolate.lim_var">
+<code class="sig-prename descclassname"><span class="pre">pypolate.</span></code><code class="sig-name descname"><span class="pre">lim_var</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ancillary</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">class_col</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">class_dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cols</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[None]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">source_identifier</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">suffix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pypolate.lim_var" title="Permalink to this definition">¶</a></dt>
+<dd><p>The limiting variable method interpolates data into disaggregated target polygons by setting thresholds to area-class categories.
+It accepts two DataFrames – a source and ancillary (landuse most common), the area-class column in the ancillary DataFrame,
+a dictionary for specifying thresholds to each area-class, a list of columns to be interpolated, an optional source identifier,
+and an optional suffix for the new name of the interpolated column. Source polygons are reindexed and the area of each is calculated,
+an intersection is performed, and intersected areas are calculated. The values of the dictionary are placed in a new threshold field and their keys
+are matched with the specified area-class category. After the areal weight is found, a copy of the dictionary is made with values of none
+or 0 removed (these correspond to the class with no threshold). Starting with the most restrictive, the specified columns are
+multiplied by their areal weight and clipped at the specified threshold per square unit.
+The area that has been used is decremented from the source area and areal weight is recalculated.
+The most restrictive class is then removed from the dictionary, and this process repeats until all the classes have been removed from the dictionary.
+Finally, the remaining data is interpolated into the class with no restriction. The target DataFrame is returned with interpolated columns.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>source</strong> (<em>DataFrame</em>) – DataFrame with values for interpolation</p></li>
+<li><p><strong>ancillary</strong> (<em>DataFrame</em>) – DataFrame with area-class map categories.</p></li>
+<li><p><strong>class_col</strong> (<em>str</em>) – Area-class categories</p></li>
+<li><p><strong>class_dict</strong> (<em>dict</em>) – Area-class categories with assigned thresholds per square unit. Classes with no threshold should be assigned None. Classes with no data should not be included in dictionary.</p></li>
+<li><p><strong>cols</strong> (<em>list</em>) – Column(s) from source to be interpolated</p></li>
+<li><p><strong>source_identifier</strong> (<em>str</em><em>, </em><em>optional</em>) – Column that identifies source polygons. The default is ‘’</p></li>
+<li><p><strong>suffix</strong> (<em>str</em><em>, </em><em>optional</em>) – New name for interpolated columns. The default is ‘’</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Target DataFrame with interpolated columns.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="pypolate.n_class">
+<code class="sig-prename descclassname"><span class="pre">pypolate.</span></code><code class="sig-name descname"><span class="pre">n_class</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ancillary</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">class_col</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">class_dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cols</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[None]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">source_identifier</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">suffix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pypolate.n_class" title="Permalink to this definition">¶</a></dt>
+<dd><p>The n-class method interpolates data into disaggregated target polygons by assigning weights to area-class categories.
+It accepts two DataFrames – a source and ancillary (landuse most common), the area-class column in the ancillary DataFrame,
+a dictionary for specifying percentages to each area-class, a list of columns to be interpolated, an optional source identifier,
+and an optional suffix for the new name of the interpolated column. Like areal weighting, source polygons are reindexed and the area of each is calculated.
+The dictionary values are placed into a new percentage field and their keys are matched with the specified area-class column.
+After intersecting, the areal weight for each new polygon is calculated and multiplied by its corresponding user-defined percentage.
+Each of those products is then divided by the sum of all the products per source polygon. That fraction is called class_weight and is
+multiplied by column values for interpolation. The target DataFrame is returned with interpolated columns.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>source</strong> (<em>DataFrame</em>) – DataFrame with values for interpolation.</p></li>
+<li><p><strong>ancillary</strong> (<em>DataFrame</em>) – DataFrame with area-class map categories.</p></li>
+<li><p><strong>class_col</strong> (<em>str</em>) – Area-class categories.</p></li>
+<li><p><strong>class_dict</strong> (<em>dict</em>) – Area-class categories with assigned percentages.</p></li>
+<li><p><strong>cols</strong> (<em>list</em>) – Column(s) from source to be interpolated.</p></li>
+<li><p><strong>source_identifier</strong> (<em>str</em><em>, </em><em>optional</em>) – Column that identifies source polygons. The default is ‘’</p></li>
+<li><p><strong>suffix</strong> (<em>str</em><em>, </em><em>optional</em>) – New name for interpolated columns. The default is ‘’</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Target DataFrame with interpolated columns.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="pypolate.parcel">
+<code class="sig-prename descclassname"><span class="pre">pypolate.</span></code><code class="sig-name descname"><span class="pre">parcel</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">zone</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parcel</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tu_col</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ru_col</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ba_col</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ra_col</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cols</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[None]</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pypolate.parcel" title="Permalink to this definition">¶</a></dt>
+<dd><p>The parcel based method disaggregates population from a large geography to the tax lot level by using residential
+area and number of residential units as proxies for population distribution. It accepts two DataFrames, a zone DataFrame
+with geography and population, and a parcel DataFrame which contain geography, total units per parcel, residential units per parcel,
+building area per parcel, and residential area per parcel. This method returns a DataFrame at the tax lot level that has two calculated columns of
+disaggregated population, one based on residential area and one based on residential units.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>zone</strong> (<em>DataFrame</em>) – DataFrame to be interpolated</p></li>
+<li><p><strong>parcel</strong> (<em>DataFrame</em>) – Parcel DataFrame</p></li>
+<li><p><strong>tu_col</strong> (<em>str</em>) – Column name from parcel DataFrame containing total number of units</p></li>
+<li><p><strong>ru_col</strong> (<em>str</em>) – Column name from parcel DataFrame containing number of residential units</p></li>
+<li><p><strong>ba_col</strong> (<em>str</em>) – Column name from parcel DataFrame containing building area</p></li>
+<li><p><strong>ra_col</strong> (<em>str</em>) – Column name from parcel DataFrame containing residential area</p></li>
+<li><p><strong>cols</strong> (<em>list</em>) – Column names from Zone DataFrame containing values to interpolate. Can accept one or more columns</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The parcel level DataFrame with two interpolated fields added for each column of input: One derived from residential units, and another derived from adjusted residential area</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="examples.html" class="btn btn-neutral float-right" title="Example Usage" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="install.html" class="btn btn-neutral float-left" title="How to install PyPolate" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Michael Ward &amp; John Fitzgibbons.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
