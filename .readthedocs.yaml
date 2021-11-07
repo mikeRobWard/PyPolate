@@ -21,7 +21,7 @@ sphinx:
    
 
 python:
-  version: 3.8
+  version: "3.8"
   install:
     - requirements: doc/requirements.txt
 # If using Sphinx, optionally build your docs in additional formats such as PDF
