@@ -20,7 +20,10 @@ sphinx:
    configuration: doc/conf.py
    
 
-requirements_file: requirements.txt
+python:
+  version: 3.8
+  install:
+    -requirements: requirements.txt
 # If using Sphinx, optionally build your docs in additional formats such as PDF
 # formats:
 #    - pdf
