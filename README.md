@@ -98,7 +98,7 @@ For the parcel method, we will use [tax lot data from NYC's MapPLUTO](https://ww
 
 The data that we will be interpolating is population, which is currently aggregated in census block groups. Using the parcel method, the population can be disaggregated into individual parcels. Our inputs should look like this:
 
-pypolate.parcel(block_group.df, parcels.df, 'UnitsTotal', 'UnitsRes', 'BldgArea', 'ResArea', [population])
+    pypolate.parcel(block_group.df, parcels.df, 'UnitsTotal', 'UnitsRes', 'BldgArea', 'ResArea', [population])
 
 
 The parcel method will interpolate population into two new columns which are calculated from different inputs. One of the new columns is named ara_derived (derived from adjusted residential area), and the other column is named ru_derived (derived from number of residential units). Below are the results of the parcel method, one map for each interpolation type:
