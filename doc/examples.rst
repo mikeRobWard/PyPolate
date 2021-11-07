@@ -127,7 +127,7 @@ Our input data will look like this if plotted:
     :width: 100%
     :alt: es_input
 
-.. image:: assets/parcels.jpg
+.. image:: assets/parcels.png
     :width: 100%
     :alt: es_input2
 
@@ -147,6 +147,6 @@ as well as a new field named expert_sys. As seen in the dataframe below, CEDS de
 on a census block group basis. In Block Group 3 of ``GEOID`` 360610271003 CEDS chooses the ``ru_derived`` population,
 then chooses the ``ara_derived population`` for block group 1 of ``GEOID`` 360610277001.
 
-.. image:: assets/es_pandas.jpg
+.. image:: assets/es_pandas.png
     :width: 100%
     :alt: es_pandas
